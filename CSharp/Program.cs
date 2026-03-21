@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic.FileIO;
 
 class Program
 {
@@ -29,10 +30,10 @@ class Program
             switch (choice)
             {
                 case 1:
-                    AddContact();
+                    AddContact(); //Done!
                     break;
                 case 2:
-                    RemoveContact();
+                    RemoveContact(); //in Progress...
                     break;
                 case 3:
                     SearchContact();
@@ -42,7 +43,7 @@ class Program
                     break;
                 
                 case 5:
-                    DisplayContacts(Names,Numbers,Emails);
+                    DisplayContacts(Names,Numbers,Emails); //Done!
                     break;
                 case 6:
                     exit = true;
@@ -86,10 +87,39 @@ class Program
         
     }
 
-    // TODO: Implement other methods
     static void RemoveContact()
     {
+        string delete;
 
+        //asking for user input...
+        Console.WriteLine("Enter the contact name that you want to delete.");
+        delete=Console.ReadLine();
+
+        //checking the list for the contact..
+        bool found = false;
+        for (int i= Names.Count -1 ;i >= 0 ;i--)
+        {
+            if (Names[i] == delete)
+            {
+                Names.RemoveAt(i);
+                Numbers.RemoveAt(i);
+                Emails.RemoveAt(i);
+
+                Console.WriteLine("The contact has been deleted..\n press any key to continue...");
+                Console.ReadKey();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("No Contact found..");
+            Console.WriteLine("press any key to continue...");
+            Console.ReadKey();
+        }
+
+        Console.Clear();
     }
     static void SearchContact() { }
 
@@ -110,6 +140,10 @@ class Program
 
     }
     static void UpdateContact() { }
+
+
+
+
 
     //comments
 }
