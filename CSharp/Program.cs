@@ -9,6 +9,7 @@ class Program
     static List<int> Numbers = new List<int>();
     static List<string> Emails=new List<string>();
 
+    static string UserInput;
 
     static void Main(string[] args)
     {
@@ -33,13 +34,13 @@ class Program
                     AddContact(); //Done!
                     break;
                 case 2:
-                    RemoveContact(); //in Progress...
+                    RemoveContact(); //Done!
                     break;
                 case 3:
-                    SearchContact();
+                    SearchContact(); //Done!
                     break;
                 case 4:
-                    UpdateContact();
+                    UpdateContact(); //in progress...
                     break;
                 
                 case 5:
@@ -67,19 +68,19 @@ class Program
         //DisplayContacts(Names,Numbers,Emails);
 
     }
-    static void AddContact()
+    static void AddContact() //done
     {
-        string name;
+        //string UserInput;
         int number;
         string email;
         Console.WriteLine("Enter Name of the contact:");
-        name = Console.ReadLine();
+        UserInput = Console.ReadLine();
         Console.WriteLine("Enter number of the contact:");
         number=int.Parse(Console.ReadLine());
         Console.WriteLine("Enter email address:");
         email=Console.ReadLine();
 
-        ContactsInfo(name,number,email);
+        ContactsInfo(UserInput,number,email);
 
         Console.WriteLine("The Contact has been added.\npress any key to continue.");
         Console.ReadKey();
@@ -87,19 +88,19 @@ class Program
         
     }
 
-    static void RemoveContact()
+    static void RemoveContact() //done
     {
-        string delete;
+        string UserInput;
 
         //asking for user input...
         Console.WriteLine("Enter the contact name that you want to delete.");
-        delete=Console.ReadLine();
+        UserInput=Console.ReadLine();
 
         //checking the list for the contact..
         bool found = false;
         for (int i= Names.Count -1 ;i >= 0 ;i--)
         {
-            if (Names[i] == delete)
+            if (Names[i] == UserInput)
             {
                 Names.RemoveAt(i);
                 Numbers.RemoveAt(i);
@@ -121,9 +122,38 @@ class Program
 
         Console.Clear();
     }
-    static void SearchContact() { }
+    static void SearchContact() //Done!
+    {
+        bool found = false;
 
-    static void DisplayContacts(List<string>Names , List<int> Numbers,List<string> Emails) 
+        Console.WriteLine("Enter name of the contact:");
+        UserInput =Console.ReadLine();
+
+        for (int i=0 ; i < Names.Count ; i++)
+        {
+            if (Names[i] == UserInput)
+            {
+                Console.WriteLine("The contact has been found.");
+                Console.WriteLine("Contact No["+(i+1) +"]: " + Names[i]);
+                Console.WriteLine("Number of the contact: " + Numbers[i]);
+                Console.WriteLine("Email: " + Emails[i]);
+                Console.WriteLine(" ");
+
+                found=true;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("Contact not found..");
+        }
+
+        Console.WriteLine("press any key to continue...");
+        Console.ReadKey();
+        Console.Clear();
+    }
+
+    static void DisplayContacts(List<string>Names , List<int> Numbers,List<string> Emails) //done!
     {
         for (int i=0;i<Names.Count;i++)
         {
@@ -139,7 +169,10 @@ class Program
 
 
     }
-    static void UpdateContact() { }
+    static void UpdateContact()
+    {
+        
+    }
 
 
 
