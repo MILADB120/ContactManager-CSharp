@@ -10,6 +10,7 @@ class Program
     static List<string> Emails=new List<string>();
 
     static string UserInput;
+    static bool exit=false;
 
     static void Main(string[] args)
     {
@@ -17,7 +18,7 @@ class Program
         Console.WriteLine("Welcome to Contact Book!");
         Console.WriteLine("please select a number of your choice");
 
-        bool exit = false;
+        //bool exit = false;
         while (exit != true)
         {
             Console.WriteLine("1- Add a contact.");
@@ -169,14 +170,54 @@ class Program
 
 
     }
-    static void UpdateContact()
+    static void UpdateContact() //done!
     {
-        
+        bool found =false;
+
+        Console.WriteLine("Enter the name of the contact that you want to modify:");
+        UserInput = Console.ReadLine();
+
+        for (int i=0 ; i < Names.Count ; i++)
+        {
+            if (Names[i] == UserInput)
+            {
+                Console.WriteLine("Contact found.\n");
+                Console.WriteLine("Enter new Name of the contact:");
+                Names[i] = Console.ReadLine();
+
+                Console.WriteLine("Enter new Number of the contact:");
+                Numbers[i]=int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Enter new Email of the contact:");
+                Emails[i]=Console.ReadLine();
+
+                Console.WriteLine("Contact Updated.");
+                Console.WriteLine("press any key to continue..");
+                Console.ReadKey();
+                Console.Clear();
+
+                found=true;
+
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("No such Contact, please try again or press 6 to Exit program.");
+            string choice=Console.ReadLine();
+
+            if(choice == "6" )
+            {
+                exit=true;
+            }
+
+            else
+            {
+            Console.Clear();
+            UpdateContact();
+            }
+        }
     }
 
 
-
-
-
-    //comments
 }
