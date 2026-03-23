@@ -22,7 +22,7 @@ class Program
     static List<int> Numbers = new List<int>();
     static List<string> Emails=new List<string>();
 
-    static string UserInput="";
+    static string UserInput;
     static bool exit=false;
 
     static void Main(string[] args)
@@ -41,9 +41,7 @@ class Program
                 Console.WriteLine("4- Update a contact.");
                 Console.WriteLine("5- Display all Contacts.");
                 Console.WriteLine("6- Exit.");
-                string? input = Console.ReadLine();
-                if (input == null) { exit = true; break; }
-                int choice = int.Parse(input);
+                int choice = int.Parse(Console.ReadLine());
                 Console.Clear();
                 
                 switch (choice)
@@ -110,9 +108,7 @@ class Program
         string email;
 
         Console.WriteLine("Enter Name of the contact:");
-        string? nameInput = Console.ReadLine();
-        if (nameInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        name = nameInput;
+        name = Console.ReadLine();
 
         if(string.IsNullOrEmpty(name))
         {
@@ -124,14 +120,10 @@ class Program
         }
 
         Console.WriteLine("Enter number of the contact:");
-        string? numberInput = Console.ReadLine();
-        if (numberInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        number = int.Parse(numberInput);
+        number=int.Parse(Console.ReadLine());
 
         Console.WriteLine("Enter email address:");
-        string? emailInput = Console.ReadLine();
-        if (emailInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        email = emailInput;
+        email=Console.ReadLine();
 
         ContactsInfo(name,number,email);
 
@@ -147,9 +139,7 @@ class Program
 
         //asking for user input...
         Console.WriteLine("Enter the contact name that you want to delete.");
-        string? userInput = Console.ReadLine();
-        if (userInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        UserInput = userInput;
+        UserInput=Console.ReadLine();
 
         //checking the list for the contact..
         bool found = false;
@@ -182,9 +172,7 @@ class Program
         bool found = false;
 
         Console.WriteLine("Enter name of the contact:");
-        string? searchInput = Console.ReadLine();
-        if (searchInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        UserInput = searchInput;
+        UserInput =Console.ReadLine();
 
         for (int i=0 ; i < Names.Count ; i++)
         {
@@ -236,9 +224,7 @@ class Program
         bool found =false;
 
         Console.WriteLine("Enter the name of the contact that you want to modify:");
-        string? updateInput = Console.ReadLine();
-        if (updateInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-        UserInput = updateInput;
+        UserInput = Console.ReadLine();
 
         for (int i=0 ; i < Names.Count ; i++)
         {
@@ -246,19 +232,13 @@ class Program
             {
                 Console.WriteLine("Contact found.\n");
                 Console.WriteLine("Enter new Name of the contact:");
-                string? newName = Console.ReadLine();
-                if (newName == null) { Console.WriteLine("Input interrupted. Contact not updated."); Console.ReadKey(); Console.Clear(); return; }
-                Names[i] = newName.ToUpper();
+                Names[i] = Console.ReadLine().ToUpper();
 
                 Console.WriteLine("Enter new Number of the contact:");
-                string? newNumber = Console.ReadLine();
-                if (newNumber == null) { Console.WriteLine("Input interrupted. Contact not updated."); Console.ReadKey(); Console.Clear(); return; }
-                Numbers[i] = int.Parse(newNumber);
+                Numbers[i]=int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Enter new Email of the contact:");
-                string? newEmail = Console.ReadLine();
-                if (newEmail == null) { Console.WriteLine("Input interrupted. Contact not updated."); Console.ReadKey(); Console.Clear(); return; }
-                Emails[i] = newEmail;
+                Emails[i]=Console.ReadLine();
 
                 Console.WriteLine("Contact Updated.");
                 Console.WriteLine("press any key to continue..");
@@ -273,9 +253,7 @@ class Program
         if (!found)
         {
             Console.WriteLine("No such Contact, please try again or press 6 to Exit program.");
-            string? choiceInput = Console.ReadLine();
-            if (choiceInput == null) { Console.WriteLine("Input interrupted. Returning to menu."); Console.ReadKey(); Console.Clear(); return; }
-            string choice = choiceInput;
+            string choice=Console.ReadLine();
 
             if(choice == "6" )
             {
