@@ -3,10 +3,6 @@ using System.Diagnostics;
 
 class Program
 {
-    //static List<string> Names = new List<string>();
-    //static List<int> Numbers = new List<int>();
-    //static List<string> Emails=new List<string>();
-
     static List<Contact> Contacts = new List<Contact>();
 
     static string userInput ="";
@@ -37,10 +33,10 @@ class Program
                         AddContact(); //Done!
                         break;
                     case 2:
-                        RemoveContact(); //in progress..
+                        RemoveContact(); //Done!
                         break;
                     case 3:
-                        //SearchContact(); //X
+                        SearchContact(); //in progress... 
                         break;
                     case 4:
                         //UpdateContact(); //X
@@ -108,7 +104,7 @@ class Program
             AddContact();
         }
 
-        Console.WriteLine("Enter number of the contact:");
+        Console.WriteLine("Enter Number: ");
         inputNumber=int.Parse(Console.ReadLine()!);
         if(inputNumber.ToString().Length == 0)
         {
@@ -161,7 +157,7 @@ class Program
         
     }
 
-    static void RemoveContact() //in progress..
+    static void RemoveContact() //Done!
     {
         string userInput;
 
@@ -191,37 +187,35 @@ class Program
         Console.Clear();
     }
     
-    /*static void SearchContact() //Done!
+    static void SearchContact() //Done!
     {
+        Console.WriteLine("Enter name to search:");
+        string input = Console.ReadLine().ToUpper();
+
         bool found = false;
 
-        Console.WriteLine("Enter name of the contact:");
-        userInput =Console.ReadLine()!;
-
-        for (int i=0 ; i < Names.Count ; i++)
+        foreach (var contact in Contacts)
         {
-            if (Names[i] == userInput.ToUpper())
+            if (contact.Name.Contains(input))
             {
-                Console.WriteLine("The contact has been found.");
-                Console.WriteLine("Contact No["+(i+1) +"]: " + Names[i]);
-                Console.WriteLine("Number of the contact: " + Numbers[i]);
-                Console.WriteLine("Email: " + Emails[i]);
-                Console.WriteLine(" ");
+                Console.WriteLine("Name: " + contact.Name);
+                Console.WriteLine("Number:  " + contact.Number);
+                Console.WriteLine("Email: " + contact.Email);
+                Console.WriteLine();
 
-                found=true;
+                found = true;
             }
         }
 
         if (!found)
         {
-            Console.WriteLine("Contact not found..");
+            Console.WriteLine("No contact found.");
         }
-
         Console.WriteLine("press any key to continue...");
         Console.ReadKey();
         Console.Clear();
     }
-*/
+        
     static void DisplayContacts( ) //done!
     {
         if (Contacts.Count > 0)
@@ -229,7 +223,7 @@ class Program
             for (int i=0;i<Contacts.Count;i++)
             {
                 Console.WriteLine("Contact No["+(i+1) +"]: " + Contacts[i].Name);
-                Console.WriteLine("Number of the contact: " + Contacts[i].Number);
+                Console.WriteLine("Number:  " + Contacts[i].Number);
                 Console.WriteLine("Email: " + Contacts[i].Email);
                 Console.WriteLine(" ");
             }
@@ -261,7 +255,7 @@ class Program
                 Console.WriteLine("Enter new Name of the contact:");
                 Names[i] = Console.ReadLine()!.ToUpper();
 
-                Console.WriteLine("Enter new Number of the contact:");
+                Console.WriteLine("Enter new Number: ");
                 Numbers[i]=int.Parse(Console.ReadLine()!);
 
                 Console.WriteLine("Enter new Email of the contact:");
