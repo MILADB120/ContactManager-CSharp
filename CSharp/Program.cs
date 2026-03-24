@@ -1,5 +1,4 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 class Program
 {
@@ -36,10 +35,10 @@ class Program
                         RemoveContact(); //Done!
                         break;
                     case 3:
-                        SearchContact(); //in progress... 
+                        SearchContact(); //Done! 
                         break;
                     case 4:
-                        //UpdateContact(); //X
+                        UpdateContact(); //in progress..
                         break;
                 
                     case 5:
@@ -70,22 +69,6 @@ class Program
             }
         }
     }
-    
-    /*static void ContactsInfo(string Name ,int Number,string Email) //method to store the contacts in lists..
-    {
-        List<string> Names = new List<string>();
-        Names.Add(Name.ToUpper());
-
-        <int> Numbers = new List<int>();
-        Numbers.Add(Number);
-
-        List<string> Emails=new List<string>();
-        .Add(Email);
-
-        DisplayContacts(Names,Numbers,Emails);
-
-    }
-    */
     static void AddContact() //done
     {
         string inputName;
@@ -216,7 +199,7 @@ class Program
         Console.Clear();
     }
         
-    static void DisplayContacts( ) //done!
+    static void DisplayContacts( ) //Done!
     {
         if (Contacts.Count > 0)
         {
@@ -238,40 +221,49 @@ class Program
         Console.ReadKey();
         Console.Clear();
     }
-
-    /*
     static void UpdateContact() 
     {
         bool found =false;
 
         Console.WriteLine("Enter the name of the contact that you want to modify:");
-        userInput = Console.ReadLine()!;
-
-        for (int i=0 ; i < Names.Count ; i++)
+        userInput = Console.ReadLine()!.ToUpper();
+        if(!string.IsNullOrEmpty(userInput))
         {
-            if (Names[i] == userInput.ToUpper())
+            foreach (var contact in Contacts)
             {
-                Console.WriteLine("Contact found.\n");
-                Console.WriteLine("Enter new Name of the contact:");
-                Names[i] = Console.ReadLine()!.ToUpper();
+                if (contact.Name.Contains(userInput))
+                {
+                    Console.WriteLine("Contact found.\n");
+                    Console.WriteLine("Enter new Name of the contact:");
+                    contact.Name = Console.ReadLine()!.ToUpper();
 
-                Console.WriteLine("Enter new Number: ");
-                Numbers[i]=int.Parse(Console.ReadLine()!);
+                    Console.WriteLine("Enter new Number: ");
+                    contact.Number=int.Parse(Console.ReadLine()!);
 
-                Console.WriteLine("Enter new Email of the contact:");
-                Emails[i]=Console.ReadLine()!;
+                    Console.WriteLine("Enter new Email of the contact:");
+                    contact.Email=Console.ReadLine()!;
 
-                Console.WriteLine("Contact Updated.");
-                Console.WriteLine("press any key to continue..");
-                Console.ReadKey();
-                Console.Clear();
+                    Console.WriteLine("Contact Updated.");
+                    Console.WriteLine("press any key to continue..");
+                    Console.ReadKey();
+                    Console.Clear();
 
-                found=true;
-
+                    found=true;
+                    break;
+                }
             }
         }
 
-        if (!found)
+        else if (string.IsNullOrEmpty(userInput))
+        {
+            Console.WriteLine("Name cannot be empty.");
+            Console.WriteLine("please try again.");
+            Console.ReadKey();
+            Console.Clear();
+            UpdateContact();
+        }
+
+        else if (!found)
         {
             Console.WriteLine("No such Contact, please try again or press 6 to Exit program.");
             string choice=Console.ReadLine()!;
@@ -288,6 +280,4 @@ class Program
             }
         }
     }
-*/
-
 }
